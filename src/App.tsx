@@ -1,68 +1,81 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
-import { ProtectedRoute } from './components/auth/ProtectedRoute'
-
-// Pages (to be created)
-import { LandingPage } from './pages/LandingPage'
-import { AuthPage } from './pages/AuthPage'
-import { DashboardPage } from './pages/DashboardPage'
-import { OnboardingPage } from './pages/OnboardingPage'
-import { TimerPage } from './pages/TimerPage'
-import { HabitsPage } from './pages/HabitsPage'
-import { AnalyticsPage } from './pages/AnalyticsPage'
-import { SettingsPage } from './pages/SettingsPage'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider } from '@/contexts/AuthContext'
+import { AuthPage } from '@/components/auth/AuthPage'
+import { AuthCallback } from '@/components/auth/AuthCallback'
+import { ProtectedRoute } from '@/components/auth/ProtectedRoute'
+import { Layout } from '@/components/layout/Layout'
+import { Dashboard } from '@/pages/Dashboard'
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
-          {/* Public routes */}
-          <Route path="/" element={<LandingPage />} />
+          {/* Public Routes */}
           <Route path="/auth" element={<AuthPage />} />
-          
-          {/* Protected routes */}
-          <Route path="/onboarding" element={
-            <ProtectedRoute>
-              <OnboardingPage />
-            </ProtectedRoute>
-          } />
-          
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <DashboardPage />
-            </ProtectedRoute>
-          } />
-          
-          <Route path="/timer" element={
-            <ProtectedRoute>
-              <TimerPage />
-            </ProtectedRoute>
-          } />
-          
-          <Route path="/habits" element={
-            <ProtectedRoute>
-              <HabitsPage />
-            </ProtectedRoute>
-          } />
-          
-          <Route path="/analytics" element={
-            <ProtectedRoute>
-              <AnalyticsPage />
-            </ProtectedRoute>
-          } />
-          
-          <Route path="/settings" element={
-            <ProtectedRoute>
-              <SettingsPage />
-            </ProtectedRoute>
-          } />
-          
-          {/* Catch all */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Dashboard />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Placeholder routes - to be implemented */}
+          <Route
+            path="/timer"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <div className="text-center py-12">
+                    <h2 className="text-2xl font-bold">Timer Page</h2>
+                    <p className="text-gray-600 mt-2">Coming soon in Week 2</p>
+                  </div>
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/habits"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <div className="text-center py-12">
+                    <h2 className="text-2xl font-bold">Habits Page</h2>
+                    <p className="text-gray-600 mt-2">Coming soon in Week 3</p>
+                  </div>
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/analytics"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <div className="text-center py-12">
+                    <h2 className="text-2xl font-bold">Analytics Page</h2>
+                    <p className="text-gray-600 mt-2">Coming soon in Phase 2</p>
+                  </div>
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Default redirect */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
