@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
+import { isSupabaseConfigured } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { AlertCircle } from 'lucide-react'
 
 export function AuthPage() {
   const { signInWithGoogle, signInWithGithub } = useAuth()
@@ -63,11 +65,24 @@ export function AuthPage() {
           </div>
         )}
 
+        {/* Missing Config Message */}
+        {!isSupabaseConfigured && (
+          <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg space-y-2">
+            <div className="flex items-center text-amber-800 dark:text-amber-200">
+              <AlertCircle className="w-5 h-5 mr-2" />
+              <p className="font-semibold">Supabase not configured</p>
+            </div>
+            <p className="text-sm text-amber-700 dark:text-amber-300">
+              To enable authentication and database features, please add your Supabase credentials to the environment secrets.
+            </p>
+          </div>
+        )}
+
         {/* OAuth Buttons */}
         <div className="space-y-3">
           <Button
             onClick={handleGoogleSignIn}
-            disabled={loading}
+            disabled={loading || !isSupabaseConfigured}
             variant="outline"
             className="w-full h-12 text-base"
           >
@@ -94,7 +109,7 @@ export function AuthPage() {
 
           <Button
             onClick={handleGithubSignIn}
-            disabled={loading}
+            disabled={loading || !isSupabaseConfigured}
             variant="outline"
             className="w-full h-12 text-base"
           >

@@ -5,6 +5,10 @@ import { AuthCallback } from '@/components/auth/AuthCallback'
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute'
 import { Layout } from '@/components/layout/Layout'
 import { Dashboard } from '@/pages/Dashboard'
+import { Timer } from '@/pages/Timer'
+import { Habits } from '@/pages/Habits'
+import { Onboarding } from '@/pages/Onboarding'
+import { Toaster } from '@/components/ui/sonner'
 
 function App() {
   return (
@@ -14,6 +18,14 @@ function App() {
           {/* Public Routes */}
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route
+            path="/onboarding"
+            element={
+              <ProtectedRoute>
+                <Onboarding />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Protected Routes */}
           <Route
@@ -33,10 +45,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="text-center py-12">
-                    <h2 className="text-2xl font-bold">Timer Page</h2>
-                    <p className="text-gray-600 mt-2">Coming soon in Week 2</p>
-                  </div>
+                  <Timer />
                 </Layout>
               </ProtectedRoute>
             }
@@ -47,10 +56,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="text-center py-12">
-                    <h2 className="text-2xl font-bold">Habits Page</h2>
-                    <p className="text-gray-600 mt-2">Coming soon in Week 3</p>
-                  </div>
+                  <Habits />
                 </Layout>
               </ProtectedRoute>
             }
@@ -74,6 +80,7 @@ function App() {
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
+        <Toaster />
       </AuthProvider>
     </BrowserRouter>
   )

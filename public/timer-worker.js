@@ -1,6 +1,6 @@
-let timerId: ReturnType<typeof setInterval> | null = null;
+let timerId = null;
 
-self.onmessage = (e: MessageEvent) => {
+self.onmessage = (e) => {
   if (e.data === 'start') {
     if (timerId) clearInterval(timerId);
     timerId = setInterval(() => {

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { User, Session } from '@supabase/supabase-js'
-import { supabase, db } from '@/lib/supabase'
+import { supabase, db, isSupabaseConfigured } from '@/lib/supabase'
 import type { User as AppUser } from '@/types'
 
 interface AuthContextType {
@@ -56,6 +56,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false)
+      return
+    }
+
     // Check active session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
@@ -85,11 +90,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     })
 
     return () => {
-      subscription.unsubscribe()
+      subscription?.unsubscribe()
     }
   }, [])
 
   const signInWithGoogle = async () => {
+    if (!isSupabaseConfigured) {
+      throw new Error('Supabase is not configured. Please add your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env.local')
+    }
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -103,6 +111,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signInWithGithub = async () => {
+    if (!isSupabaseConfigured) {
+      throw new Error('Supabase is not configured. Please add your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env.local')
+    }
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
