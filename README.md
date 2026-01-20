@@ -3,6 +3,21 @@
 > All-in-one Progressive Web App for deep work focus sessions, habit tracking, and AI-powered productivity insights
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Week 1](https://img.shields.io/badge/Week%201-Complete-brightgreen)](https://github.com/pipipew/flowforge/issues/1)
+[![Phase](https://img.shields.io/badge/Phase-MVP%20Development-blue)])
+
+## 🎯 Current Status: Week 1 Complete! 🎉
+
+✅ **Authentication System Implemented**
+- OAuth login (Google + GitHub)
+- Session management
+- Protected routes
+- User profiles
+- Responsive layout with navigation
+
+👉 **[Start Testing!](WEEK1_SETUP.md)** | **[Open Issues](https://github.com/pipipew/flowforge/issues)**
+
+---
 
 ## 🎯 Vision
 
@@ -36,9 +51,14 @@ npm install
 cp .env.example .env
 # Edit .env with your Supabase credentials
 
+# Run database migrations (see WEEK1_SETUP.md)
+# In Supabase Dashboard > SQL Editor, run migration files
+
 # Run development server
 npm run dev
 ```
+
+**📖 Detailed setup instructions:** See [WEEK1_SETUP.md](WEEK1_SETUP.md)
 
 ### Environment Setup
 
@@ -52,49 +72,75 @@ VITE_OPENAI_API_KEY=your_openai_key # Optional for Phase 3
 
 ## 📋 Development Roadmap
 
-### Phase 1: MVP (Current - Weeks 1-4)
+### Phase 1: MVP (Weeks 1-4) - 🟢 IN PROGRESS
 
-- [x] Repository setup
-- [ ] Supabase database schema
-- [ ] OAuth authentication (Google + GitHub)
-- [ ] Basic Pomodoro timer (25/5 default)
-- [ ] Habit creation & check-in (max 3 for free tier)
-- [ ] Today's dashboard
-- [ ] Offline-first architecture
-- [ ] PWA installable
+- [x] **Week 1: Authentication & Foundation** ✅
+  - [x] Repository setup
+  - [x] Supabase database schema (3 migrations)
+  - [x] OAuth authentication (Google + GitHub)
+  - [x] AuthContext & session management
+  - [x] Protected routes
+  - [x] Basic dashboard layout
+  - [x] Responsive navigation
+  - [x] UI components (Button, Card)
+
+- [ ] **Week 2: Timer System** 🔵 NEXT
+  - [ ] Pomodoro timer (25/5 default)
+  - [ ] Web Worker for accurate timing
+  - [ ] Session category selector
+  - [ ] Save sessions to database
+  - [ ] Completion notifications
+  - [ ] Quick mood check-in
+
+- [ ] **Week 3: Habit Tracking**
+  - [ ] Habit creation & editing
+  - [ ] Daily check-in checkboxes
+  - [ ] Streak calculation
+  - [ ] Habit history calendar
+  - [ ] Free tier limit (max 3 habits)
+
+- [ ] **Week 4: Dashboard & Polish**
+  - [ ] Real-time stats widgets
+  - [ ] Weekly progress charts
+  - [ ] Onboarding flow (4 screens)
+  - [ ] Performance optimization
+  - [ ] MVP testing & bug fixes
 
 ### Phase 2: Enhancement (Weeks 5-8)
 
 - [ ] Multiple timer modes (Deep Work, Custom)
-- [ ] Ambient sounds
-- [ ] Analytics charts (7/30 days)
-- [ ] Theme customization
-- [ ] Notification system
-- [ ] User settings
+- [ ] Ambient sounds player
+- [ ] Analytics page with charts (7/30 days)
+- [ ] Theme customization (4 color schemes)
+- [ ] Notification system (Web Push)
+- [ ] User settings page
+- [ ] Offline-first PWA with sync
 
 ### Phase 3: AI + Social (Weeks 9-12)
 
-- [ ] AI weekly insights
+- [ ] AI weekly insights (OpenAI)
 - [ ] Mood/energy tracking
 - [ ] Focus rooms (real-time)
 - [ ] Achievement system
 - [ ] Integrations (Notion, Todoist)
 - [ ] Pro tier (Stripe)
 
-## 🏗️ Tech Stack
+## 🛠️ Tech Stack
 
 **Frontend**
 - React 18 + TypeScript
 - Vite (build tool)
-- TailwindCSS + shadcn/ui (Radix UI components)
+- TailwindCSS + Radix UI components
 - Zustand (state management)
-- React Router (navigation)
+- React Router v6 (navigation)
 
 **Backend**
 - Supabase (PostgreSQL + Auth + Realtime + Storage)
-- OpenAI API (GPT-4 for insights)
+- Row Level Security (RLS) policies
+- PostgreSQL functions for analytics
 
-**PWA**
+**Future**
+- OpenAI API (GPT-4 for insights)
 - Workbox (service workers)
 - IndexedDB (offline storage)
 
@@ -106,42 +152,76 @@ VITE_OPENAI_API_KEY=your_openai_key # Optional for Phase 3
 
 ```
 flowforge/
-├── public/
-│   ├── manifest.json
-│   └── icons/
 ├── src/
 │   ├── components/
-│   │   ├── timer/
-│   │   ├── habits/
-│   │   ├── dashboard/
-│   │   └── ui/ (shadcn components)
-│   ├── hooks/
+│   │   ├── auth/              # ✅ Auth components
+│   │   │   ├── AuthPage.tsx
+│   │   │   ├── AuthCallback.tsx
+│   │   │   └── ProtectedRoute.tsx
+│   │   ├── layout/            # ✅ Layout
+│   │   │   └── Layout.tsx
+│   │   └── ui/                # ✅ UI components
+│   │       ├── Button.tsx
+│   │       └── Card.tsx
+│   ├── contexts/
+│   │   └── AuthContext.tsx    # ✅ Auth state
 │   ├── lib/
-│   │   ├── supabase.ts
-│   │   └── utils/
+│   │   ├── supabase.ts        # ✅ DB client + helpers
+│   │   └── utils.ts           # ✅ Utilities
 │   ├── pages/
-│   ├── stores/
+│   │   └── Dashboard.tsx      # ✅ Dashboard page
 │   ├── types/
-│   └── App.tsx
+│   │   └── index.ts           # ✅ TypeScript types
+│   └── App.tsx                # ✅ Routing
 ├── supabase/
-│   └── migrations/
-└── tests/
+│   └── migrations/            # ✅ DB schema
+│       ├── 20260120000001_initial_schema.sql
+│       ├── 20260120000002_rls_policies.sql
+│       └── 20260120000003_functions.sql
+├── WEEK1_SETUP.md            # ✅ Setup guide
+├── ROADMAP.md                # Detailed plan
+└── README.md                 # This file
 ```
 
 ## 🧪 Testing
 
 ```bash
-# Unit tests
+# Type checking
+npm run type-check
+
+# Linting
+npm run lint
+
+# Unit tests (coming in Week 2)
 npm run test
 
-# E2E tests
+# E2E tests (coming in Week 4)
 npm run test:e2e
-
-# Coverage
-npm run test:coverage
 ```
 
-## 📦 Building
+**📝 Week 1 Testing:** See [Issue #1](https://github.com/pipipew/flowforge/issues/1) for testing checklist
+
+## 📚 Documentation
+
+- **[WEEK1_SETUP.md](WEEK1_SETUP.md)** - Complete setup & testing guide
+- **[ROADMAP.md](ROADMAP.md)** - Detailed development plan with milestones
+- **[SETUP.md](SETUP.md)** - General project setup
+- **Master Prompt** - See attached `FlowForge_Master_Prompt.txt` for full spec
+
+## 💬 Community & Support
+
+- 🐛 [Report a Bug](https://github.com/pipipew/flowforge/issues/new?labels=bug)
+- 💡 [Request a Feature](https://github.com/pipipew/flowforge/issues/new?labels=enhancement)
+- 💬 [Ask a Question](https://github.com/pipipew/flowforge/discussions)
+
+## 📊 Project Metrics
+
+- **Lines of Code:** ~2,000 (Week 1)
+- **Test Coverage:** TBD (Week 2+)
+- **Lighthouse Score:** TBD (Week 4)
+- **Contributors:** 1 (growing!)
+
+## 🚀 Deployment
 
 ```bash
 # Production build
@@ -151,20 +231,34 @@ npm run build
 npm run preview
 ```
 
+**Deployment:** Vercel (auto-deploy from `main` branch)
+
 ## 🤝 Contributing
 
-Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+Contributions welcome! Here's how:
 
-## 📄 License
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines (coming soon).
+
+## 📜 License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🔗 Links
 
+- [Live Demo](https://flowforge.vercel.app) (coming soon)
 - [Documentation](https://docs.flowforge.app) (coming soon)
-- [Roadmap](https://github.com/pipipew/flowforge/projects)
+- [Roadmap](ROADMAP.md)
 - [Issues](https://github.com/pipipew/flowforge/issues)
+- [Discussions](https://github.com/pipipew/flowforge/discussions)
 
 ---
 
 **Built with ❤️ for deep work and habit formation**
+
+*Last updated: January 20, 2026 - Week 1 Complete*
