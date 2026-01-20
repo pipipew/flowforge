@@ -1,0 +1,23 @@
+{
+  "name": "flowforge",
+  "version": "1.0.0",
+  "runtime": "node18",
+  "build": {
+    "command": "npm run build",
+    "output": "dist"
+  },
+  "env": {
+    "VITE_SUPABASE_URL": "$SUPABASE_URL",
+    "VITE_SUPABASE_ANON_KEY": "$SUPABASE_KEY",
+    "VITE_BLINK_DEPLOYMENT": "true",
+    "VITE_NODE_ENV": "production",
+    "VITE_API_URL": "https://flowforge.blink.new/api",
+    "VITE_SESSION_TIMEOUT": "7200",
+    "VITE_SECURE_COOKIES": "true",
+    "VITE_ENABLE_PWA": "true",
+    "VITE_ENABLE_SERVICE_WORKER": "true",
+    "VITE_ENABLE_OFFLINE_MODE": "true"
+  },
+  "functions": [],
+  "cron": []
+}
