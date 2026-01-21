@@ -146,3 +146,14 @@ export interface DailyBreakdown {
   total_minutes: number
   session_count: number
 }
+
+  export interface SessionStats {
+  total_sessions: number
+  completed_sessions: number
+  total_minutes: number
+  average_duration: number
+  completion_rate: number
+  current_streak: number
+  longest_streak: number
+  sessions_this_week: number
+}
