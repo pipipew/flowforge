@@ -4,6 +4,7 @@ import CategorySelector from '../components/timer/CategorySelector';
 import MoodCheckIn from '../components/timer/MoodCheckIn';
 import TimerDisplay from '../components/timer/TimerDisplay';
 import TimerControls from '../components/timer/TimerControls';
+import { SessionStats } from '../components/SessionStats';
 import '../styles/timer.css';
 
 interface TimerPageState {
@@ -96,6 +97,8 @@ const Timer: React.FC = () => {
               <p>Category: <strong>{pageState.sessionCategory}</strong></p>
               <p>Mood: <strong>{pageState.moodRating}/5</strong></p>
             </div>
+
+             <SessionStats userId={pageState.sessionCategory} className="mt-6" />
           </div>
         )}
       </div>
