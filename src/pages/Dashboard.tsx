@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { Timer } from '../components/timer/Timer';
 import { HabitSection } from '../components/habits/HabitSection';
 
 export const Dashboard: React.FC = () => {
@@ -50,8 +49,16 @@ export const Dashboard: React.FC = () => {
         {/* Focus Tab */}
         {activeTab === 'focus' && (
           <div className="space-y-8">
-            <Card className="p-8">
-              <Timer />
+            <Card className="p-8 text-center">
+              <h2 className="text-2xl font-bold mb-4">Start a Focus Session</h2>
+              <p className="text-gray-400 mb-6">
+                Choose your focus duration and category to begin
+              </p>
+              <div className="grid md:grid-cols-3 gap-4">
+                <Button>25m Pomodoro</Button>
+                <Button>45m Deep Work</Button>
+                <Button>90m Flow State</Button>
+              </div>
             </Card>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -76,12 +83,12 @@ export const Dashboard: React.FC = () => {
               <Card className="p-6">
                 <h3 className="text-lg font-bold mb-4">Quick Actions</h3>
                 <div className="space-y-2">
-                  <Button className="w-full">Start 25-min Pomodoro</Button>
+                  <Button className="w-full">View Previous Sessions</Button>
                   <Button className="w-full" variant="secondary">
-                    Start Deep Work (90m)
+                    Analytics Dashboard
                   </Button>
                   <Button className="w-full" variant="secondary">
-                    View Analytics
+                    Settings
                   </Button>
                 </div>
               </Card>
