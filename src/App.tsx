@@ -36,7 +36,7 @@ function App() {
                 <Layout>
 <Timer />
 </Layout>
-              /ProtectedRoute>
+              </ProtectedRoute>
             }
           />
 
