@@ -6,7 +6,7 @@
   "description": "All-in-one Progressive Web App for deep work focus sessions, habit tracking, and AI-powered productivity insights",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
