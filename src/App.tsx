@@ -9,7 +9,8 @@ import { Dashboard } from '@/pages/Dashboard'
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <HabitProvider>
+  <AuthProvider>
         <Routes>
           {/* Public Routes */}
           <Route path="/auth" element={<AuthPage />} />
@@ -75,6 +76,7 @@ function App() {
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </AuthProvider>
+</HabitProvider>
     </BrowserRouter>
   )
 }
