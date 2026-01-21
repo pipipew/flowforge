@@ -239,4 +239,65 @@ export const db = {
     if (error) throw error
     return data as number
   },
+
+   // Session Stats
+ async getSessionStats(userId: string) {
+ const { data, error } = await supabase
+ .from('focus_sessions')
+ .select('*')
+ .eq('user_id', userId)
+ .order('started_at', { ascending: false })
+ 
+ if (error) throw error
+ 
+ // Calculate stats from sessions
+ const totalSessions = data?.length || 0
+ const totalMinutes = data?.reduce((sum: number, session: any) => sum + (session.duration_minutes || 0), 0) || 0
+ const avgMood = data?.length ? data.reduce((sum: number, session: any) => sum + (session.mood_rating || 0), 0) / data.length : 0
+ const completionRate = data?.length ? (data.filter((s: any) => s.completed).length / data.length) * 100 : 0
+ 
+ return {
+ totalSessions,
+ totalMinutes,
+ avgMood: Math.round(avgMood * 10) / 10,
+ completionRate: Math.round(completionRate),
+ }
+ },
+ async getUserSessions(userId: string, limit = 30, offset = 0) {
+ const { data, error } = await supabase
+ .from('focus_sessions')
+ .select('*')
+ .eq('user_id', userId)
+ .order('started_at', { ascending: false })
+ .range(offset, offset + limit - 1)
+ 
+ if (error) throw error
+ return data
+ },
+ async createSessionMood(sessionId: string, userId: string, moodData: Record<string, unknown>) {
+ // Store mood check-in for a session
+ const { data, error } = await supabase
+ .from('session_moods')
+ .insert({
+ session_id: sessionId,
+ user_id: userId,
+ ...moodData,
+ created_at: new Date().toISOString(),
+ })
+ .select()
+ .single()
+ 
+ if (error) throw error
+ return data
+ },
+ async getSessionMoods(sessionId: string) {
+ const { data, error } = await supabase
+ .from('session_moods')
+ .select('*')
+ .eq('session_id', sessionId)
+ .order('created_at', { ascending: false })
+ 
+ if (error) throw error
+ return data
+ },
 }
