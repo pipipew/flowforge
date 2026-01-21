@@ -1,0 +1,9 @@
+Deployment Target: flowforge.blink.new
+Branch: feat/blink-migration
+Build Date: Wed Jan 21 09:44:07 UTC 2026
+Build Size:  32K
+Commits Ahead: 24
+
+Assets:
+dist/sw.js
+dist/workbox-78ef5c9b.js

@@ -1,0 +1,182 @@
+/* Timer Page Styling */
+.timer-page {
+  @apply w-full h-full flex items-center justify-center p-4;
+}
+
+.timer-container {
+  @apply max-w-2xl w-full space-y-8;
+}
+
+.timer-container h1 {
+  @apply text-4xl font-bold text-center mb-8;
+}
+
+/* Setup Phase */
+.timer-setup {
+  @apply space-y-6;
+}
+
+.timer-setup > * + * {
+  @apply mt-6;
+}
+
+.mood-section {
+  @apply border border-gray-200 rounded-lg p-6 space-y-4 dark:border-gray-700;
+}
+
+.mood-section h2 {
+  @apply text-xl font-semibold;
+}
+
+.start-button {
+  @apply w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors duration-200;
+}
+
+/* Active Timer Phase */
+.timer-active {
+  @apply space-y-8;
+}
+
+/* Timer Display */
+.timer-display {
+  @apply flex flex-col items-center justify-center space-y-4;
+}
+
+.timer-display-time {
+  @apply text-7xl font-mono font-bold tracking-wider;
+}
+
+.progress-circle {
+  @apply relative w-64 h-64 rounded-full flex items-center justify-center;
+}
+
+.progress-ring {
+  @apply absolute w-full h-full rounded-full;
+  stroke-dasharray: 360;
+  stroke-dashoffset: calc(360 * (1 - var(--progress, 0)) / 1);
+  transition: stroke-dashoffset 0.35s linear;
+}
+
+/* Category & Mood Info */
+.session-info {
+  @apply mt-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg space-y-2;
+}
+
+.session-info p {
+  @apply text-center text-gray-700 dark:text-gray-300;
+}
+
+.session-info strong {
+  @apply font-semibold text-gray-900 dark:text-white;
+}
+
+/* Timer Controls */
+.timer-controls {
+  @apply flex gap-3 justify-center flex-wrap;
+}
+
+.timer-btn {
+  @apply px-4 py-2 rounded-lg font-semibold transition-colors duration-200;
+}
+
+.timer-btn-primary {
+  @apply bg-green-600 hover:bg-green-700 text-white disabled:bg-gray-400;
+}
+
+.timer-btn-secondary {
+  @apply bg-yellow-600 hover:bg-yellow-700 text-white disabled:bg-gray-400;
+}
+
+.timer-btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white disabled:bg-gray-400;
+}
+
+/* Category Selector */
+.category-selector {
+  @apply grid grid-cols-2 md:grid-cols-5 gap-3;
+}
+
+.category-option {
+  @apply p-3 border-2 border-gray-300 rounded-lg cursor-pointer transition-all duration-200 hover:border-blue-600 dark:border-gray-600 dark:hover:border-blue-400;
+}
+
+.category-option.selected {
+  @apply border-blue-600 bg-blue-50 dark:bg-blue-900/20;
+}
+
+/* Mood Check-in */
+.mood-checkIn {
+  @apply flex gap-2 justify-center;
+}
+
+.mood-option {
+  @apply w-12 h-12 rounded-full border-2 border-gray-300 cursor-pointer transition-all duration-200 flex items-center justify-center text-xl hover:scale-110 dark:border-gray-600;
+}
+
+.mood-option.selected {
+  @apply border-blue-600 bg-blue-600 text-white transform scale-110;
+}
+
+/* Animations */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timer-display-time {
+    @apply text-5xl;
+  }
+
+  .progress-circle {
+    @apply w-48 h-48;
+  }
+
+  .timer-controls {
+    @apply flex-col;
+  }
+
+  .timer-btn {
+    @apply w-full;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .timer-page {
+    @apply bg-gray-900 text-white;
+  }
+
+  .timer-container {
+    @apply bg-gray-800 rounded-xl p-8;
+  }
+}

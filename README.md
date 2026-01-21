@@ -6,14 +6,23 @@
 [![Week 1](https://img.shields.io/badge/Week%201-Complete-brightgreen)](https://github.com/pipipew/flowforge/issues/1)
 [![Phase](https://img.shields.io/badge/Phase-MVP%20Development-blue)])
 
-## 🎯 Current Status: Week 1 Complete! 🎉
-
+## 🎯 Current Status: Week 2 Complete! - Timer System Implemented 🎉
 ✅ **Authentication System Implemented**
 - OAuth login (Google + GitHub)
 - Session management
 - Protected routes
 - User profiles
 - Responsive layout with navigation
+
+- ✅ **Week 2: Timer System Implemented**
+
+- Pomodoro timer with circular progress animation
+- Session categories (work, study, code, creative, reading)
+- Mood check-ins (pre/post session)
+- Session analytics and statistics dashboard
+- Persistent session data in Supabase
+- Timer controls (start, pause, resume, stop, reset)
+- Responsive dark-themed UI with Tailwind CSS
 
 👉 **[Start Testing!](WEEK1_SETUP.md)** | **[Open Issues](https://github.com/pipipew/flowforge/issues)**
 
